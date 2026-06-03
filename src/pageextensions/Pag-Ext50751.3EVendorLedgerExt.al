@@ -1,20 +1,33 @@
 pageextension 50751 "3E Vendor Ledger Ext" extends "Vendor Ledger Entries"
 {
+
     layout
     {
-        addafter("Message to Recipient")
+        addlast(Control1)
         {
-            field("Create Payment"; Rec."Create Payment")
+            field("RP User Id"; Rec."RP User Id")
             {
-                Caption = 'Create Payment';
+                Editable = false;
                 ApplicationArea = All;
-                ToolTip = 'Create Payment';
             }
-            field("Payment Created"; Rec."Payment Created")
+            field("RP DateTime"; Rec."RP DateTime")
             {
-                Caption = 'Payment Created';
+                Editable = false;
                 ApplicationArea = All;
-                ToolTip = 'Payment Created';
+            }
+            field("CR User Id"; Rec."CR User Id")
+            {
+                Editable = false;
+                ApplicationArea = All;
+            }
+            field("CR DateTime"; Rec."CR DateTime")
+            {
+                Editable = false;
+                ApplicationArea = All;
+            }
+            field("Ready for Payment"; Rec."Ready for Payment")
+            {
+                ApplicationArea = All;
             }
         }
     }
@@ -41,7 +54,9 @@ pageextension 50751 "3E Vendor Ledger Ext" extends "Vendor Ledger Entries"
                         CreatePayment.MakeGenJnlLines(VendorLedgerEntry);
                         GetBatchRecords(GenJournalBatch, CreatePayment);
                         GenJnlManagement.TemplateSelectionFromBatch(GenJournalBatch);
-                        if VendorLedgerEntry.FindSet()then repeat VendorLedgerEntry."Payment Created":=true;
+                        if VendorLedgerEntry.FindSet() then
+                            repeat
+                                VendorLedgerEntry."Ready for Payment" := true;
                                 VendorLedgerEntry.Modify(true);
                             until VendorLedgerEntry.Next() = 0;
                         Clear(CreatePayment);
@@ -58,8 +73,8 @@ pageextension 50751 "3E Vendor Ledger Ext" extends "Vendor Ledger Entries"
         JournalTemplateName: Code[10];
         JournalBatchName: Code[10];
     begin
-        JournalTemplateName:=CreatePayment.GetTemplateName();
-        JournalBatchName:=CreatePayment.GetBatchNumber();
+        JournalTemplateName := CreatePayment.GetTemplateName();
+        JournalBatchName := CreatePayment.GetBatchNumber();
         GenJournalTemplate.Get(JournalTemplateName);
         GenJournalBatch.Get(JournalTemplateName, JournalBatchName);
     end;

@@ -1,15 +1,15 @@
 {
   "id": "9409b749-89e8-445c-8adf-82da84782eaa",
-  "name": "MindCurve Bank Integration",
-  "publisher": "3E MindCurve",
+  "name": "Bank Integration",
+  "publisher": "MindCurve",
   "version": "1.0.0.0",
   "brief": "MindCurve",
-  "description": "3E MindCurve Bank Integration",
+  "description": "Bank Integration",
   "privacyStatement": "https://mindcurve.in",
   "EULA": "https://mindcurve.in",
   "help": "https://mindcurve.in",
   "url": "https://mindcurve.in",
-  "logo": "",
+  "logo": "logo/3E Logo.jpg",
   "dependencies": [
     {
       "id": "db643212-b7fb-4dd4-b5a8-cb44ac714461",
@@ -47,12 +47,22 @@
       "version": "1.0.0.0",
       "publisher": "Microsoft"
     },
+
     {
       "id": "eddcf82e-482c-49d1-836b-ad0284f2c5b0",
       "name": "India TCS",
       "version": "1.0.0.0",
       "publisher": "Microsoft"
     }
+    ,
+    
+  {
+   "id":  "ffb7dd80-f852-4149-a68a-5d6b7b3f9e6f",
+    "name":  "HMS Integration",
+    "publisher":  "Edhate",
+    "version": "1.0.6.48"
+  }
+
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
